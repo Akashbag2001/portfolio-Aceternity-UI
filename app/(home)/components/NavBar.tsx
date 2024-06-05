@@ -21,7 +21,7 @@ function NavBar() {
       },
     ];
   return (
-    <nav className='flex justify-between items-center py-10 mt-5'>
+    <nav className='flex justify-between items-center py-10 '>
         <h1 className='text-2xl font-bold underline underline-offset-8 decoration-green-500 -rotate-2'>Akash Bag 👨‍💻</h1>
         <div className='flex gap-5 items-center'>
             {socials.map((social,index)=>{
