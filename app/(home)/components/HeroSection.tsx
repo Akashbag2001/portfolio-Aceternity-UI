@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { MovingBtn } from './ui/moving-border';
+import Title from "./Title";
+
 
 function HeroSection() {
   return (
@@ -20,13 +22,7 @@ function HeroSection() {
           className="inline-block group"
         >
           {" "}
-          <div>
-            <h1 className="flex text-3xl font-bold group-hover:text-green-400 transition-all">
-              Contact Me 📫
-            </h1>
-            <div className="w-40 h-2 rounded-full bg-indigo-500"></div>
-            <div className="w-40 h-2 rounded-full bg-green-500 translate-x-2"></div>
-          </div>
+          <Title text="Contact Me 📫"/>
         </Link>
       </div>
       <MovingBtn borderRadius="0.5rem" className="p-3 font-semibold">
