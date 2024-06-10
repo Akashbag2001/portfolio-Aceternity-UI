@@ -1,8 +1,9 @@
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react'
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from 'react-icons/fa6';
-function NavBar() {
+function NavBar({className}:{className?: string}) {
     const socials = [
       {
         link: "https://www.linkedin.com/in/akash-bag/",
@@ -21,7 +22,7 @@ function NavBar() {
       },
     ];
   return (
-    <nav className='flex justify-between items-center py-10 '>
+    <nav className={cn('flex justify-between items-center py-10 animate-move-down', className)}>
         <h1 className='text-2xl font-bold underline underline-offset-8 decoration-green-500 -rotate-2'>Akash Bag 👨‍💻</h1>
         <div className='flex gap-5 items-center'>
             {socials.map((social,index)=>{

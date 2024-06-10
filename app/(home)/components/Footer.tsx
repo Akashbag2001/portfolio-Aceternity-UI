@@ -1,9 +1,10 @@
 import React from 'react'
+import NavBar from './NavBar'
 
 function Footer() {
   return (
     <div className='border-t mt-10'>
-      Footer
+      <NavBar className='flex-col gap-5'/>
     </div>
   )
 }

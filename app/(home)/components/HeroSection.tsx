@@ -6,7 +6,7 @@ import Title from "./Title";
 
 function HeroSection() {
   return (
-    <div className="min-h-[60vh] flex flex-col-reverse gap-16 lg:gap-0 lg:flex-row items-center justify-between">
+    <div className="min-h-[60vh] flex flex-col-reverse gap-16 lg:gap-0 lg:flex-row items-center justify-between animate-move-up">
       <div className="leftPart space-y-10 text-center lg:text-left">
         <h1 className="text-4xl lg:text-7xl font-bold pb-4">
           Nice to Meet You! 👋 <br />
@@ -26,7 +26,8 @@ function HeroSection() {
         </Link>
       </div>
       <MovingBtn borderRadius="0.5rem" className="p-3 font-semibold">
-        <p>💼 Avalaible for work</p>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        <p>💼 Avalaible for work</p></a>
       </MovingBtn>
       <div className="rightPart space-y-3 -rotate-[30deg]  w-72 h-72 relative">
         <div className="flex gap-3 translate-x-8">
