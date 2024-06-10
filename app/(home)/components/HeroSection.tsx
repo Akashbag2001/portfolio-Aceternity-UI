@@ -2,9 +2,11 @@ import Link from "next/link";
 import React from "react";
 import { MovingBtn } from './ui/moving-border';
 import Title from "./Title";
+import { FlipWords } from "./ui/flip-words";
 
 
 function HeroSection() {
+  const words = ["MERN-Stack-Developer", "Problem-Solver", "React-native-developer", "Flutter-enthusiast"]
   return (
     <div className="min-h-[60vh] flex flex-col-reverse gap-16 lg:gap-0 lg:flex-row items-center justify-between animate-move-up">
       <div className="leftPart space-y-10 text-center lg:text-left">
@@ -14,9 +16,9 @@ function HeroSection() {
             {"I'm Akash"}
           </span>
         </h1>
-        <p className="text-lg  md:w-96 text-grey-300">
-          {"I'm a Full stack developer and a problem solver!"}
-        </p>
+        <div className="text-lg font-bold  md:w-96 text-grey-300">
+          {"I'm a "}<FlipWords words={words}/>
+        </div>
         <Link
           href={"mailto:bagakash11@gmail.com"}
           className="inline-block group"

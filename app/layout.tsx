@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("http://localhost:3000/"),
+	metadataBase: new URL("https://portfolio-aceternity-ui.vercel.app/"),
 
 	title: {
 		template: "%s | Akash Bag ",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 		title: "Akash Bag ",
 		description:
 			"I'm a Full stack developer and a problem solver!",
-		url: "http://localhost:3000/",
+		url: "https://portfolio-aceternity-ui.vercel.app/",
 		siteName: "Akash Bag ",
 		images: "/og.png",
 		type: "website",
