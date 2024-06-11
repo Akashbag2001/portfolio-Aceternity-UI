@@ -5,7 +5,9 @@ import Title from './Title'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { DirectionAwareHover } from './ui/direction-aware-hover'
-
+import { FaReact } from "react-icons/fa";
+import { IoLogoFirebase } from "react-icons/io5";
+import { FaCss3Alt } from "react-icons/fa6";
 function Project() {
     const projects = [
         {
@@ -16,26 +18,21 @@ function Project() {
             background : "bg-green-500"
         },
         {
-            title : "Online movie/Series seacher",
-            tech : [SiNextdotjs,RiTailwindCssFill ],
-            link: "https://hulu-clone-react-nextjs-ma27.vercel.app/?genre=fetchTrending",
-            cover : "/hulu.png",
+            title : "Twitter Clone",
+            tech : [FaReact,RiTailwindCssFill,IoLogoFirebase ],
+            link: "https://twitter-clone-18a0a.web.app/",
+            cover : "/twitter-thump.png",
             background : "bg-indigo-500"
         },
         {
-            title : "Online movie/Series seacher",
-            tech : [SiNextdotjs,RiTailwindCssFill ],
-            link: "https://hulu-clone-react-nextjs-ma27.vercel.app/?genre=fetchTrending",
-            cover : "/hulu.png",
+            title : "GPT-3(Modern UI/UX)",
+            tech : [FaReact,FaCss3Alt ],
+            link: "https://gpt3-20023.netlify.app/",
+            cover : "/gpt-3-thump.png",
             background : "bg-green-500"
         },
-        {
-            title : "Online movie/Series seacher",
-            tech : [SiNextdotjs,RiTailwindCssFill ],
-            link: "https://hulu-clone-react-nextjs-ma27.vercel.app/?genre=fetchTrending",
-            cover : "/hulu.png",
-            background : "bg-indigo-500"
-        },
+       
+
     ]
   return (
     <div className='py-10 p-5 sm:p-0'>

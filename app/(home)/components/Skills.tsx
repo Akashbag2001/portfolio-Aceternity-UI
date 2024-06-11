@@ -6,7 +6,7 @@ import { FaNode, FaReact } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from 'react-icons/ri';
 import { BiLogoMongodb } from 'react-icons/bi';
 import { SiExpress } from 'react-icons/si';
-import { Vortex } from './ui/vortex';
+
 
 function Skills() {
     const skills =  [
