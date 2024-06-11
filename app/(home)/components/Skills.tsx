@@ -48,10 +48,7 @@ function Skills() {
       <Title text='Skills 💫' className='flex flex-col justify-center items-center -rotate-3'/>
       
       <HoverEffect items={skills}/>
-      <Vortex
-        backgroundColor="black"
-        className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
-      ></Vortex>
+      
     </div>
   )
 }
