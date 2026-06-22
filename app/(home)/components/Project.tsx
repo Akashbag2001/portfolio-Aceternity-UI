@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import { RiTailwindCssFill } from 'react-icons/ri'
 import { SiNextdotjs } from 'react-icons/si'

@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 import React from "react";
 import { MovingBtn } from './ui/moving-border';
 import Title from "./Title";
@@ -6,7 +6,7 @@ import { FlipWords } from "./ui/flip-words";
 
 
 function HeroSection() {
-  const words = ["MERN-Stack-Developer", "Problem-Solver", "React-native-developer", "Flutter-enthusiast"]
+  const words = ["Software-Engineer","Full-Stack-Developer", "Problem-Solver", "Typescript-specialist", "Agentic-AI-Practitioner"]
   return (
     <div className="min-h-[60vh] flex flex-col-reverse gap-16 lg:gap-0 lg:flex-row items-center justify-between animate-move-up">
       <div className="leftPart space-y-10 text-center lg:text-left">
@@ -19,13 +19,12 @@ function HeroSection() {
         <div className="text-lg font-bold  md:w-96 text-grey-300">
           {"I'm a "}<FlipWords words={words}/>
         </div>
-        <Link
-          href={"mailto:bagakash11@gmail.com"}
+        <a
+          href="mailto:bagakash11@gmail.com"
           className="inline-block group"
         >
-          {" "}
           <Title text="Contact Me 📫"/>
-        </Link>
+        </a>
       </div>
       <MovingBtn borderRadius="0.5rem" className="p-3 font-semibold">
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">

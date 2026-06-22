@@ -5,7 +5,7 @@ import { HoverEffect } from './ui/card-hover-effect'
 import { FaNode, FaReact } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from 'react-icons/ri';
 import { BiLogoMongodb } from 'react-icons/bi';
-import { SiExpress } from 'react-icons/si';
+import { SiExpress, SiPostgresql, SiMysql, SiFastify, SiDocker } from 'react-icons/si';
 
 
 function Skills() {
@@ -40,8 +40,23 @@ function Skills() {
             Icon:FaNode ,
         
         },
+        {
+            text: "PostgreSQL",
+            Icon: SiPostgresql,
+        },
+        {
+            text: "MySQL",
+            Icon: SiMysql,
+        },
+        {
+            text: "Fastify",
+            Icon: SiFastify,
+        },
+        {
+            text: "Docker",
+            Icon: SiDocker,
+        },
        
-        
     ]
   return (
     <div className='max-w-5xl mx-auto px-8'>
