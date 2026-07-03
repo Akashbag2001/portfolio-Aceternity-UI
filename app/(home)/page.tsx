@@ -4,23 +4,31 @@ import HeroSection from './components/HeroSection'
 import Skills from './components/Skills';
 import Project from './components/Project';
 import Footer from './components/Footer';
+import WorkExperience from './components/WorkExperience';
+import Contact from './components/Contact';
 
 function page() {
   return (
-    <div className="min-h-screen bg-black overflow-hidden">
-      <div className="dark:bg-black bg-white  dark:bg-grid-white/[0.05] bg-grid-black/[0.2] relative">
-        <div className="max-w-7xl mx-auto p-5  ">
-          {/* navBar */}
+    <div className="min-h-screen bg-black overflow-x-hidden">
+      {/* Hero section with grid background */}
+      <div className="dark:bg-black bg-black dark:bg-grid-white/[0.04] bg-grid-white/[0.04] relative">
+        <div className="max-w-7xl mx-auto px-5 pb-5">
+          {/* NavBar */}
           <NavBar />
-          {/* Hero section */}
+          {/* Hero */}
           <HeroSection />
         </div>
-        <div className='h-10 xl:h-32 bg-gradient-to-t from-black absolute w-full -bottom-5 left-0 xl:bottom-0 pointer-events-none'></div>
+        {/* Fade to black */}
+        <div className="h-20 xl:h-40 bg-gradient-to-t from-black absolute w-full bottom-0 left-0 pointer-events-none" />
       </div>
-      <div className='max-w-7xl mx-auto p-5 mt-20'>
-        <Skills/>
-        <Project/>
-        <Footer/>
+
+      {/* Main content */}
+      <div className="max-w-7xl mx-auto px-5">
+        <Skills />
+        <WorkExperience />
+        <Project />
+        <Contact />
+        <Footer />
       </div>
     </div>
   );
