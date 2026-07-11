@@ -22,7 +22,7 @@ const itemVariants = {
 };
 
 const stats = [
-  { value: "4+", label: "Years Coding" },
+  { value: "2+", label: "Years Coding" },
   { value: "4", label: "Companies" },
   { value: "10+", label: "Projects" },
   { value: "~", label: "Coffee Cups" },
