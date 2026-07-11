@@ -60,7 +60,7 @@ function Project() {
         <div className="flex flex-col justify-center items-center mb-4">
           <Title text="Projects ✅" className="flex flex-col justify-center items-center -rotate-3" />
           <p className="text-gray-400 text-center mt-6 max-w-lg">
-            A selection of things I've built — from clones to custom UIs.
+            A selection of things I&apos;ve built — from clones to custom UIs.
           </p>
         </div>
 
