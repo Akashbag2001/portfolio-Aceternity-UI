@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from './components/NavBar'
 import HeroSection from './components/HeroSection'
 import Skills from './components/Skills';
-import Project from './components/Project';
+import MyVenture from './components/MyVenture';
 import Footer from './components/Footer';
 import WorkExperience from './components/WorkExperience';
 import Contact from './components/Contact';
@@ -26,7 +26,7 @@ function page() {
       <div className="max-w-7xl mx-auto px-5">
         <Skills />
         <WorkExperience />
-        <Project />
+        <MyVenture />
         <Contact />
         <Footer />
       </div>
