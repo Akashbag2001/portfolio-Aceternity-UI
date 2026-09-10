@@ -4,92 +4,319 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-
-    --radius: 0.75rem;
+    --ink: 0 0% 11%; /* #1B1B1B */
+    --paper: 0 0% 98%; /* #FAFAFA */
+    --flame: 34 98% 57%; /* #FDA228, the single accent */
+    color-scheme: light;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-black text-white;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
   html {
     scroll-behavior: smooth;
   }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+  ::selection {
+    background: hsl(var(--flame));
+    color: hsl(var(--ink));
+  }
 }
 
-/* ─── Custom scrollbar ─── */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink/55;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-1.5 w-1.5 shrink-0 rounded-full bg-flame;
+  }
+
+  .page-title {
+    @apply font-display text-[clamp(2.75rem,8.5vw,7.5rem)] font-extrabold leading-[0.92] tracking-[-0.04em];
+  }
+  .section-title {
+    @apply font-display text-[clamp(2.5rem,6.5vw,5.75rem)] font-extrabold leading-[0.95] tracking-[-0.035em];
+  }
+
+  /* Stroked display type, the reference site's signature */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px hsl(var(--ink));
+  }
+  .text-outline-light {
+    color: transparent;
+    -webkit-text-stroke: 1.5px hsl(var(--paper));
+  }
+  @media (min-width: 768px) {
+    .text-outline,
+    .text-outline-light {
+      -webkit-text-stroke-width: 2px;
+    }
+  }
+
+  /* Button label that rolls up to reveal a copy of itself on hover */
+  .roll {
+    position: relative;
+    display: block;
+    overflow: hidden;
+  }
+  .roll > span {
+    position: relative;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .roll > span::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    white-space: nowrap;
+  }
+  .group:hover .roll > span,
+  .group:focus-visible .roll > span {
+    transform: translateY(-100%);
+  }
+}
+
+/* The display face's width axis: wider, heavier headlines. */
+.font-display,
+.page-title,
+.section-title {
+  font-variation-settings: "wdth" 112;
+}
+
+/* ─── Home hero ─── */
+/* Tall, condensed and heavy, like the reference's semicondensed display face. */
+.hero-type {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-variation-settings: "wdth" 70;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+/* Cut-out portrait: black and white, dissolving into the page at the bottom. */
+.hero-photo {
+  filter: grayscale(1) contrast(1.06);
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 97%);
+  mask-image: linear-gradient(to bottom, #000 58%, transparent 97%);
+}
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave 2s ease-in-out 1.8s 2;
+}
+@keyframes wave {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0);
+  }
+  10%,
+  30% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+/* ─── Page transitions: two slanted panels, as on the reference site ─── */
+/* Opening (app/template.tsx): the halves split, one up and one down. */
+.curtain,
+.page-leave {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  overflow: hidden;
+}
+.curtain__panel,
+.page-leave__panel {
+  position: absolute;
+  /* Tall enough that the -45deg skew never exposes a corner. */
+  top: -30vw;
+  width: 50.5%;
+  height: calc(100% + 60vw);
+  background: hsl(var(--ink));
+}
+.curtain__panel--left,
+.page-leave__panel--left {
+  left: 0;
+}
+.curtain__panel--right,
+.page-leave__panel--right {
+  right: 0;
+}
+.curtain__panel--left {
+  animation: curtain-up 1.5s cubic-bezier(0.76, 0, 0.24, 1) 0.35s both;
+}
+.curtain__panel--right {
+  animation: curtain-down 1.5s cubic-bezier(0.76, 0, 0.24, 1) 0.35s both;
+}
+@keyframes curtain-up {
+  from {
+    transform: skewY(-45deg) translateY(0);
+  }
+  to {
+    transform: skewY(-45deg) translateY(-110%);
+  }
+}
+@keyframes curtain-down {
+  from {
+    transform: skewY(-45deg) translateY(0);
+  }
+  to {
+    transform: skewY(-45deg) translateY(110%);
+  }
+}
+.curtain__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 800;
+  font-size: clamp(2rem, 6vw, 4rem);
+  letter-spacing: -0.04em;
+  color: hsl(var(--paper));
+  animation: curtain-label 0.45s ease 0.25s both;
+}
+@keyframes curtain-label {
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+/* The page rises into place as the panels part. */
+.page-enter {
+  animation: page-enter 1.3s cubic-bezier(0.76, 0, 0.24, 1) 0.35s backwards;
+}
+@keyframes page-enter {
+  from {
+    transform: translateY(40px);
+  }
+  to {
+    transform: none;
+  }
+}
+
+/* Closing (components/site/PageTransition.tsx): the halves slide back in. */
+.page-leave {
+  z-index: 95;
+  visibility: hidden;
+}
+.page-leave.is-active {
+  visibility: visible;
+}
+.page-leave__panel--left {
+  transform: skewY(-45deg) translateY(-110%);
+}
+.page-leave__panel--right {
+  transform: skewY(-45deg) translateY(110%);
+}
+.page-leave.is-active .page-leave__panel {
+  transform: skewY(-45deg) translateY(0);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ─── Drawn project covers ─── */
+.cover-lane {
+  animation: cover-lane 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes cover-lane {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(84px);
+  }
+}
+.cover-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cover-pulse 2s ease-out infinite;
+}
+@keyframes cover-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+.cover-bar {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: cover-bar 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+}
+@keyframes cover-bar {
+  from {
+    transform: scaleX(0.72);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: hsl(var(--paper));
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #22c55e, #6366f1);
+  background: hsl(var(--ink) / 0.25);
+  border: 3px solid hsl(var(--paper));
   border-radius: 100px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #4ade80, #818cf8);
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .curtain,
+  .page-leave {
+    display: none;
+  }
+  .page-enter,
+  .wave,
+  .animate-marquee,
+  .animate-spin-slow,
+  .cover-lane,
+  .cover-pulse,
+  .cover-bar {
+    animation: none;
+  }
 }
 
-/* ─── Glow effect (hero) ─── */
-.glow {
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  box-shadow: 0 0 200px 130px #5b21b6;
-}
-
-/* ─── Gradient text utility ─── */
-.gradient-text {
-  background: linear-gradient(135deg, #22c55e, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ─── Glassmorphism card utility ─── */
-.glass-card {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* ─── Selection color ─── */
-::selection {
-  background: rgba(34, 197, 94, 0.25);
-  color: #fff;
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
 }

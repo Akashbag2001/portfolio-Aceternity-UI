@@ -1,205 +1,203 @@
 "use client";
+
 import React from "react";
-import { FlipWords } from "./ui/flip-words";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
+import { FlipWords } from "./ui/flip-words";
+import CircledText from "./ui/circled-text";
+import PillButton from "./ui/pill-button";
+import { ArrowDown } from "lucide-react";
 
-const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false });
-
-const containerVariants = {
+const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] } },
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 const stats = [
-  { value: "2+", label: "Years Coding" },
+  { value: "2+", label: "Years shipping" },
   { value: "4", label: "Companies" },
-  { value: "10+", label: "Projects" },
-  { value: "~", label: "Coffee Cups" },
+  { value: "10+", label: "Projects delivered" },
+  { value: "24h", label: "Reply time" },
 ];
 
 function HeroSection() {
-  const words = [
-    "Software Engineer",
+  const roles = [
     "Full-Stack Developer",
     "Problem Solver",
     "TypeScript Specialist",
-    "Agentic-AI Practitioner",
+    "AI Practitioner",
   ];
 
   return (
-    <div className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden">
-      {/* Particle canvas background */}
-      <div className="absolute inset-0 -z-10">
-        <ParticleField />
-      </div>
-
-      {/* Ambient glows */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 rounded-full bg-green-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none" />
+    <section className="relative overflow-hidden">
+      {/* Soft yellow wash behind the headline */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[520px] w-[820px] max-w-[140vw] -translate-x-1/2 rounded-full bg-sun/25 blur-[130px]"
+        aria-hidden="true"
+      />
 
       <motion.div
-        className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-6xl mx-auto px-4"
-        variants={containerVariants}
+        className="mx-auto max-w-6xl px-6 pb-24 pt-16 sm:pt-20 lg:pb-32 lg:pt-24"
+        variants={container}
         initial="hidden"
         animate="visible"
       >
-        {/* Left content */}
-        <div className="flex-1 text-center lg:text-left space-y-8">
-          {/* Available badge */}
-          <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-sm font-medium backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </span>
-              Available for opportunities
-            </span>
-          </motion.div>
-
-          {/* Greeting + name */}
-          <motion.div variants={itemVariants}>
-            <p className="text-gray-400 text-lg mb-2">Hello, world! 👋</p>
-            <h1 className="text-5xl lg:text-7xl font-black leading-tight">
-              {"I'm "}
-              <span className="relative">
-                <span className="bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                  Akash Bag
-                </span>
-                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full" />
-              </span>
-            </h1>
-          </motion.div>
-
-          {/* FlipWords */}
-          <motion.div variants={itemVariants} className="text-xl font-semibold text-white flex items-center flex-wrap gap-1">
-            <span>A passionate</span>
-            <FlipWords
-              words={words}
-              className="!text-green-400 font-bold"
+        {/* ── Split: copy left, portrait right ── */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          {/* Portrait — first on mobile, right column on desktop */}
+          <motion.div
+            variants={item}
+            className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:order-2 lg:max-w-none"
+          >
+            {/* Decorative yellow disc, offset behind */}
+            <div
+              className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-full bg-sun sm:translate-x-6 sm:translate-y-6"
+              aria-hidden="true"
             />
+            {/* Outline ring, offset the other way */}
+            <div
+              className="absolute inset-0 -z-10 -translate-x-3 -translate-y-3 rounded-full border-2 border-ink/15 sm:-translate-x-5 sm:-translate-y-5"
+              aria-hidden="true"
+            />
+
+            {/*
+              The source photo is a white-ringed circle on a black square.
+              Clipping to a circle and scaling past 1.093 crops out both the
+              black corners and that stock white ring, so the site's own ring
+              is the only edge that shows.
+            */}
+            <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-ink bg-ink/5">
+              <Image
+                src="/akash-portrait.jpg"
+                alt="Akash Bag"
+                fill
+                priority
+                sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 460px"
+                className="scale-[1.18] object-cover"
+              />
+            </div>
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a
-              href="mailto:bagakash11@gmail.com"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 shadow-lg shadow-green-500/25 hover:shadow-green-500/40 hover:-translate-y-0.5"
-            >
-              Contact Me
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-white/5 text-white font-semibold hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm hover:-translate-y-0.5"
-            >
-              <Download className="w-4 h-4" />
-              Resume
-            </a>
-          </motion.div>
+          {/* Copy */}
+          <div className="flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left">
+            {/* Availability */}
+            <motion.div variants={item}>
+              <span className="inline-flex items-center gap-2.5 rounded-full border border-ink/12 bg-paper-alt px-4 py-2 text-xs font-medium text-ink-muted shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sun opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-sun" />
+                </span>
+                Available for new projects
+              </span>
+            </motion.div>
 
-          {/* Social links */}
-          <motion.div variants={itemVariants} className="flex gap-4 justify-center lg:justify-start">
-            <a
-              href="https://github.com/Akashbag2001"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-lg border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+            {/* Role line.
+                FlipWords renders a <div> and goes position:absolute on exit, so
+                it lives in a relative wrapper (not a <p>) to keep the outgoing
+                word anchored here rather than to the section. */}
+            <motion.div
+              variants={item}
+              className="mt-7 flex flex-wrap items-center justify-center gap-x-1 text-sm font-semibold uppercase tracking-[0.16em] text-ink-muted lg:justify-start"
             >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/akash-bag/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-lg border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:border-white/20 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+              <span>Software Engineer &amp;</span>
+              <span className="relative inline-flex">
+                <FlipWords
+                  words={roles}
+                  className="text-ink px-1 uppercase tracking-[0.16em]"
+                />
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={item}
+              className="mt-4 text-[clamp(2.25rem,5.4vw,4rem)] font-bold leading-[1.0] text-ink"
             >
-              <Linkedin className="w-5 h-5" />
-            </a>
-          </motion.div>
+              Fast, scalable web apps and AI products,{" "}
+              <CircledText>built to ship</CircledText>.
+            </motion.h1>
+
+            {/* Lede */}
+            <motion.p
+              variants={item}
+              className="mt-7 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg"
+            >
+              I&apos;m Akash — a full-stack engineer who turns ambitious ideas
+              into production software. Clean architecture, measurable
+              performance, and interfaces people actually enjoy using.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              variants={item}
+              className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+            >
+              <PillButton href="#contact" variant="solid" className="justify-center px-8 py-4">
+                Let&apos;s start a project
+              </PillButton>
+              <PillButton
+                href="#work"
+                variant="outline"
+                className="justify-center px-8 py-4"
+                showArrow={false}
+              >
+                See my work
+              </PillButton>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Right — animated geometric avatar */}
-        <motion.div
-          variants={itemVariants}
-          className="relative w-80 h-80 lg:w-96 lg:h-96 flex-shrink-0"
+        {/* Stat row */}
+        <motion.dl
+          variants={item}
+          className="mt-20 grid grid-cols-2 gap-y-8 border-t border-ink/10 pt-10 sm:grid-cols-4"
         >
-          {/* Outer rotating ring */}
-          <div className="absolute inset-0 rounded-full border border-white/5 animate-[spin_20s_linear_infinite]">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-green-500 shadow-lg shadow-green-500/50" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/50" />
-          </div>
-
-          {/* Inner rotating ring */}
-          <div className="absolute inset-8 rounded-full border border-white/5 animate-[spin_15s_linear_infinite_reverse]">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/50" />
-          </div>
-
-          {/* Central card */}
-          <div className="absolute inset-12 rounded-2xl bg-gradient-to-br from-green-500/10 to-indigo-500/10 border border-white/10 backdrop-blur-sm flex flex-col items-center justify-center gap-3 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-indigo-500/5" />
-            {/* Code snippet decoration */}
-            <div className="relative z-10 font-mono text-xs text-center space-y-1 px-4">
-              <p className="text-green-400">{"<Akash"}</p>
-              <p className="text-gray-400 pl-2">{"role=\"Engineer\""}</p>
-              <p className="text-gray-400 pl-2">{"passion=\"100%\""}</p>
-              <p className="text-green-400">{"/>"}</p>
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col items-center gap-1 sm:border-r sm:border-ink/10 sm:last:border-r-0"
+            >
+              <dt className="sr-only">{stat.label}</dt>
+              <dd className="font-display text-3xl font-bold tracking-[-0.03em] text-ink sm:text-4xl">
+                {stat.value}
+              </dd>
+              <p className="text-xs uppercase tracking-[0.12em] text-ink-muted">
+                {stat.label}
+              </p>
             </div>
-            <div className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-            </div>
-          </div>
+          ))}
+        </motion.dl>
 
-          {/* Glow center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-green-500/10 blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
-        </motion.div>
-      </motion.div>
-
-      {/* Stats row */}
-      <motion.div
-        className="relative z-10 mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl mx-auto px-4"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-      >
-        {stats.map((stat, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center p-4 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:bg-white/[0.05] transition-all duration-300 group"
+        {/* Scroll cue */}
+        <div className="flex justify-center">
+          <motion.a
+            href="#services"
+            className="mt-14 inline-flex flex-col items-center gap-2 text-ink-muted transition-colors hover:text-ink"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
+            aria-label="Scroll to services"
           >
-            <span className="text-2xl font-black bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-              {stat.value}
+            <span className="text-[11px] uppercase tracking-[0.2em]">
+              Scroll
             </span>
-            <span className="text-xs text-gray-500 mt-1 font-medium">{stat.label}</span>
-          </div>
-        ))}
+            <ArrowDown className="h-4 w-4 animate-bounce" aria-hidden="true" />
+          </motion.a>
+        </div>
       </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <div className="w-px h-8 bg-gradient-to-b from-white/0 to-white/30 animate-pulse" />
-        <p className="text-xs text-gray-600">scroll down</p>
-      </motion.div>
-    </div>
+    </section>
   );
 }
 
