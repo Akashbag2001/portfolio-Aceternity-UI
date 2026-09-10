@@ -66,7 +66,7 @@ function MyVenture() {
           {/* Preview */}
           <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5">
             <Image
-              src="/vriddhi-preview.jpg"
+              src="/VriddhriTechThump.png"
               alt="The Vriddhi Tech website — an AI-powered web agency and software studio"
               fill
               className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-[1.03]"

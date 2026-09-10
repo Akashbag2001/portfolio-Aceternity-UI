@@ -42,7 +42,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "LLM APIs", "Automation"],
     cover: {
       kind: "image",
-      src: "/vriddhi-preview.jpg",
+      src: "/VriddhriTechThump.png",
       alt: "The Vriddhi Tech website: AI-powered digital solutions",
     },
     tone: "#0d1a14",

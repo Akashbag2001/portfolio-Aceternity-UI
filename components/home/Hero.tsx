@@ -75,7 +75,11 @@ export function Hero() {
             <span className="sr-only">Akash Bag, </span>
             <span className={lineClass}>
               <motion.span className="block" {...slide("100%", START)}>
-                <Link href="/projects" data-cursor="Work" className="inline-block">
+                <Link
+                  href="/projects"
+                  data-cursor="Work"
+                  className="inline-block"
+                >
                   Full-Stack
                 </Link>
               </motion.span>
@@ -87,7 +91,10 @@ export function Hero() {
                   data-cursor="About"
                   onPointerEnter={() => setSecondActive(true)}
                   onPointerLeave={() => setSecondActive(false)}
-                  className={cn("text-outline inline-block transition-colors duration-500", secondActive && "text-ink")}
+                  className={cn(
+                    "text-outline inline-block transition-colors duration-500",
+                    secondActive && "text-ink",
+                  )}
                 >
                   &amp; AI Engineer
                 </Link>
@@ -95,10 +102,16 @@ export function Hero() {
             </span>
           </h1>
 
-          <div aria-hidden="true" className="pointer-events-none relative z-[5] [grid-area:1/1]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none relative z-[5] [grid-area:1/1]"
+          >
             <span className={lineClass}>
               <motion.span
-                className={cn("text-outline-light block transition-opacity duration-500", secondActive && "opacity-0")}
+                className={cn(
+                  "text-outline-light block transition-opacity duration-500",
+                  secondActive && "opacity-0",
+                )}
                 {...slide("100%", START)}
               >
                 Full-Stack
@@ -108,7 +121,7 @@ export function Hero() {
               <motion.span
                 className={cn(
                   "text-outline-light block opacity-0 transition-opacity duration-500",
-                  secondActive && "opacity-100"
+                  secondActive && "opacity-100",
                 )}
                 {...slide("-120%", START)}
               >
@@ -159,7 +172,7 @@ export function Hero() {
             transition={{ duration: 1.6, ease: EASE, delay: START + 0.15 }}
           >
             <Image
-              src="/akash-cutout.png"
+              src="/Firefly_RemoveBackground.png"
               alt="Portrait of Akash Bag"
               width={729}
               height={801}
@@ -174,7 +187,11 @@ export function Hero() {
           {...appear(START + 0.8, { y: 16 })}
           className="relative z-[4] -mt-14 flex flex-col items-center gap-3 sm:flex-row md:mt-24"
         >
-          <PillLink href="/hire#teams" arrow={false} className="rounded-md border-2 border-ink px-6 py-3.5">
+          <PillLink
+            href="/hire#teams"
+            arrow={false}
+            className="rounded-md border-2 border-ink px-6 py-3.5"
+          >
             Hiring for a role?
           </PillLink>
           <PillLink
