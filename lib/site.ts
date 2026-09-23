@@ -12,6 +12,7 @@ export const site = {
     { label: "GitHub", href: "https://github.com/Akashbag2001" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/akash-bag/" },
     { label: "X", href: "https://x.com/AkashBag19" },
+    { label: "Instagram", href: "https://www.instagram.com/_.akash.exe._/" },
   ],
 } as const;
 
